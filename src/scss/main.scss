@@ -1,0 +1,27 @@
+@import 'scss-reset/_reset.scss';
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 2rem;
+}
+
+.container {
+  max-width: 120rem;
+  padding-inline: 3rem;
+  margin-inline: auto;
+
+  border: 5px solid blue;
+}
+
+.animals {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.animal {
+  border: 1px solid red;
+}
