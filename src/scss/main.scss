@@ -1,10 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;600;700&display=swap');
 @import 'scss-reset/_reset.scss';
+
+:root {
+  --white: #fff;
+  --black: #101820;
+  --green: #007672;
+  --red: #ba0040;
+
+  --black-shadow: #10182030;
+  --white-transparent: #ffffff90;
+
+  // for gradient
+  --gradient-color--cat: var(--green);
+  --gradient-color--dog: var(--red);
+  --gradient-angle--cat: 110deg;
+  --gradient-angle--dog: 250deg;
+}
 
 html {
   font-size: 62.5%;
 }
 
 body {
+  font-family: Raleway, sans-serif;
   font-size: 2rem;
 }
 
@@ -12,27 +30,94 @@ body {
   max-width: 120rem;
   padding-inline: 3rem;
   margin-inline: auto;
+}
 
-  border: 5px solid blue;
+.btn {
+  font-size: 3rem;
+  font-weight: 700;
+
+  flex: 1;
+  padding: 2rem;
+  background-color: var(--white-transparent);
+
+  &--cat {
+    border-radius: 1rem 0 0 1rem;
+  }
+
+  &--dog {
+    border-radius: 0 1rem 1rem 0;
+  }
+
+  &--active,
+  &:hover {
+    filter: opacity(0.6);
+  }
 }
 
 .animals-nav {
   width: 100%;
+  padding: 2rem;
+
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-
-  border: 3px solid green;
 }
 
 .animals {
+  padding: 2rem;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
-
-  border: 3px solid green;
+  grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+  gap: 2rem;
 }
 
 .animal {
-  border: 1px solid red;
+  border-radius: 1rem;
+}
+
+.background {
+  width: 100vw;
+  height: 100vh;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+
+  background-image: linear-gradient(0, #000 10%, var(--black) 90%);
+
+  &--cat {
+    background-image: linear-gradient(
+      180deg,
+      var(--black) 0%,
+      var(--gradient-color--cat) 100%
+    );
+  }
+
+  &--dog {
+    background-image: linear-gradient(
+      180deg,
+      var(--black) 0%,
+      var(--gradient-color--dog) 90%
+    );
+  }
+}
+
+.modal {
+  width: 70vw;
+  height: 90vh;
+
+  position: fixed;
+  top: 50vh;
+  left: 50%;
+  translate: -50% -50%;
+
+  background-color: red;
+
+  opacity: 1;
+  visibility: visible;
+}
+
+.hidden {
+  opacity: 0;
+  visibility: hidden;
 }
