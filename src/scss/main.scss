@@ -9,6 +9,7 @@
 
   --black-shadow: #10182030;
   --white-transparent: #ffffff90;
+  --black-transparent: #000000ee;
 
   // for gradient
   --gradient-color--cat: var(--green);
@@ -72,6 +73,18 @@ body {
 
 .animal {
   border-radius: 1rem;
+
+  &__info--primary {
+    display: flex;
+  }
+
+  &__img {
+    display: block;
+    width: 50%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 50%;
+  }
 }
 
 .background {
@@ -102,17 +115,35 @@ body {
   }
 }
 
+.overlay {
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--black-transparent);
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 98;
+
+  transition: all 0.3s ease-in-out;
+  opacity: 1;
+  visibility: visible;
+}
+
 .modal {
   width: 70vw;
   height: 90vh;
+  background-color: var(--white-transparent);
+  border-radius: 2rem;
+  overflow: hidden;
 
   position: fixed;
   top: 50vh;
   left: 50%;
   translate: -50% -50%;
+  z-index: 99;
 
-  background-color: red;
-
+  transition: all 0.3s ease-in-out;
   opacity: 1;
   visibility: visible;
 }

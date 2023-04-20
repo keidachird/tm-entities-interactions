@@ -3,11 +3,13 @@ import './scss/main.scss'
 import { getAnimalType, setAnimalType } from './js/utils/localStorage'
 import { getAnimals, getAnimal } from './js/service/service'
 
-const [animalsEl, catBtn, dogBtn, backgroundEl] = [
+const [animalsEl, catBtn, dogBtn, backgroundEl, modalEl, overlayEl] = [
   '.animals',
   '.btn--cat',
   '.btn--dog',
   '.background',
+  '.modal',
+  '.overlay',
 ].map(selector => document.querySelector(selector))
 
 // DOM manipulations
@@ -49,6 +51,18 @@ const renderAnimals = animals => {
   }
 }
 
+const renderAnimal = animal => {
+  modalEl.innerHTML = ''
+
+  const card = createHtmlNode('div', 'animal__card')
+  const info = createHtmlNode('div', 'animal__info--primary')
+  const img = createHtmlNode('img', 'animal__img')
+  img.src = animal.previewImage
+  info.appendChild(img)
+  card.appendChild(info)
+  modalEl.appendChild(card)
+}
+
 // Event handlers
 const handleTypeChange = async type => {
   if (type === getAnimalType()) return
@@ -61,13 +75,23 @@ const handleTypeChange = async type => {
 const handleAnimalClick = async (id, type) => {
   const selectedAnimal = await getAnimal(id, type)
   await selectedAnimal.loadPreviewImage()
+
+  renderAnimal(selectedAnimal)
+
+  overlayEl.classList.remove('hidden')
+  modalEl.classList.remove('hidden')
   console.log(selectedAnimal)
 }
 
 class App {
   static async init() {
-    catBtn.addEventListener('click', async () => await handleTypeChange('cat'))
-    dogBtn.addEventListener('click', async () => await handleTypeChange('dog'))
+    catBtn.addEventListener('click', () => handleTypeChange('cat'))
+    dogBtn.addEventListener('click', () => handleTypeChange('dog'))
+
+    overlayEl.addEventListener('click', () => {
+      overlayEl.classList.add('hidden')
+      modalEl.classList.add('hidden')
+    })
 
     renderAnimals(await getAnimals())
   }
