@@ -68,7 +68,8 @@ class App {
     catBtn.addEventListener('click', async () => await handleTypeChange('cat'))
     dogBtn.addEventListener('click', async () => await handleTypeChange('dog'))
 
-    const onLoadAnimals = await getAnimals(getAnimalType())
+    const animalType = await getAnimalType()
+    const onLoadAnimals = await getAnimals(animalType)
     renderAnimals(onLoadAnimals)
 
     console.log(animalsEl)

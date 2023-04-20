@@ -3,7 +3,7 @@ export const setAnimalType = type => {
 }
 
 export const getAnimalType = () => {
-  const type = JSON.parse(localStorage.getItem('animalType'))
-  if (!type) setAnimalType('cat')
+  const type = JSON.parse(localStorage.getItem('animalType') || '"cat"')
+  setAnimalType(type)
   return type
 }
