@@ -12,8 +12,46 @@
   --black-transparent: #000000ee;
 }
 
+@mixin respond($breakpoint) {
+  @if $breakpoint == tab-port {
+    @media only screen and (max-width: 56.2em) {
+      @content;
+    }
+  }
+
+  @if $breakpoint == phone {
+    @media only screen and (max-width: 37.5em) {
+      @content;
+    }
+  }
+
+  @if $breakpoint == phone-small {
+    @media only screen and (max-width: 27em) {
+      @content;
+    }
+  }
+
+  @if $breakpoint == landscape {
+    @media only screen and (max-height: 37.5em) {
+      @content;
+    }
+  }
+}
+
 html {
   font-size: 62.5%;
+
+  @include respond(tab-port) {
+    font-size: 50%;
+  }
+
+  @include respond(phone-small) {
+    font-size: 37.5%;
+  }
+
+  @include respond(landscape) {
+    font-size: 37.5%;
+  }
 }
 
 body {
@@ -70,13 +108,36 @@ body {
 }
 
 .animal {
+  padding: 2rem;
   text-align: center;
   display: grid;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  justify-items: center;
+
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
   grid-template-areas:
     'image info-primary'
     'info-secondary info-secondary';
+
+  @include respond(phone) {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-areas:
+      'image'
+      'info-primary'
+      'info-secondary';
+  }
+
+  @include respond(landscape) {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas:
+      'image info-primary'
+      'image info-secondary';
+  }
 
   &__img {
     display: block;
@@ -85,6 +146,19 @@ body {
     grid-area: image;
 
     border-radius: 2rem 0 2rem 0;
+
+    @include respond(phone) {
+      border-radius: 2rem;
+    }
+
+    @include respond(phone-small) {
+      width: 80%;
+    }
+
+    @include respond(landscape) {
+      height: 100%;
+      border-radius: 2rem;
+    }
   }
 
   &__info-primary {
@@ -152,9 +226,6 @@ body {
 .modal {
   width: 90%;
   max-width: 70rem;
-  height: 90%;
-  min-height: 50rem;
-  max-height: 70rem;
 
   background-color: var(--white-transparent);
   border-radius: 2rem;
@@ -169,6 +240,16 @@ body {
   transition: all 0.3s ease-in-out;
   opacity: 1;
   visibility: visible;
+
+  @include respond(tab-port) {
+    min-width: 90%;
+    height: 90%;
+  }
+
+  @include respond(landscape) {
+    min-width: 90%;
+    height: 90%;
+  }
 }
 
 .hidden {
