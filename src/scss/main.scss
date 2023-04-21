@@ -10,12 +10,6 @@
   --black-shadow: #10182030;
   --white-transparent: #ffffff90;
   --black-transparent: #000000ee;
-
-  // for gradient
-  --gradient-color--cat: var(--green);
-  --gradient-color--dog: var(--red);
-  --gradient-angle--cat: 110deg;
-  --gradient-angle--dog: 250deg;
 }
 
 html {
@@ -34,7 +28,7 @@ body {
 }
 
 .btn {
-  font-size: 3rem;
+  font-size: 2.4rem;
   font-weight: 700;
 
   flex: 1;
@@ -67,23 +61,52 @@ body {
 .animals {
   padding: 2rem;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
   gap: 2rem;
+
+  &__item {
+    border-radius: 1rem;
+  }
 }
 
 .animal {
-  border-radius: 1rem;
-
-  &__info--primary {
-    display: flex;
-  }
+  text-align: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-template-areas:
+    'image info-primary'
+    'info-secondary info-secondary';
 
   &__img {
     display: block;
-    width: 50%;
     aspect-ratio: 1;
     object-fit: cover;
-    border-radius: 50%;
+    grid-area: image;
+
+    border-radius: 2rem 0 2rem 0;
+  }
+
+  &__info-primary {
+    font-weight: 600;
+    grid-area: info-primary;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+  }
+
+  &__info-secondary {
+    padding: 1rem;
+    grid-area: info-secondary;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
   }
 }
 
@@ -102,16 +125,12 @@ body {
     background-image: linear-gradient(
       180deg,
       var(--black) 0%,
-      var(--gradient-color--cat) 100%
+      var(--green) 100%
     );
   }
 
   &--dog {
-    background-image: linear-gradient(
-      180deg,
-      var(--black) 0%,
-      var(--gradient-color--dog) 90%
-    );
+    background-image: linear-gradient(180deg, var(--black) 0%, var(--red) 90%);
   }
 }
 
@@ -131,14 +150,18 @@ body {
 }
 
 .modal {
-  width: 70vw;
-  height: 90vh;
+  width: 90%;
+  max-width: 70rem;
+  height: 90%;
+  min-height: 50rem;
+  max-height: 70rem;
+
   background-color: var(--white-transparent);
   border-radius: 2rem;
   overflow: hidden;
 
   position: fixed;
-  top: 50vh;
+  top: 50%;
   left: 50%;
   translate: -50% -50%;
   z-index: 99;

@@ -22,7 +22,7 @@ const createHtmlNode = (tag, className, textContent = '') => {
 
 const renderAnimals = animals => {
   const animalEls = animals.reduce((arr, animal) => {
-    const animalEl = createHtmlNode('button', 'btn animal', animal.name)
+    const animalEl = createHtmlNode('button', 'btn animals__item', animal.name)
     animalEl.addEventListener('click', () =>
       handleAnimalClick(animal.id, animal.species)
     )
@@ -51,16 +51,85 @@ const renderAnimals = animals => {
   }
 }
 
+const renderPrimaryInfo = animal => {
+  const primaryElements = []
+
+  const name = createHtmlNode('p', 'animal__name', animal.name)
+  const temperament = createHtmlNode(
+    'p',
+    'animal__temperament',
+    animal.temperament
+  )
+  const lifeSpan = createHtmlNode(
+    'p',
+    'animal__life-span',
+    `Life span: ${animal.lifeSpan}`
+  )
+  const weight = createHtmlNode(
+    'p',
+    'animal__weight',
+    `Weight: ${animal.weight} kg`
+  )
+  primaryElements.push(name, temperament, lifeSpan, weight)
+
+  document.querySelector('.animal__info-primary').append(...primaryElements)
+}
+
+const renderSecondaryInfo = animal => {
+  const secondaryElements = []
+
+  switch (animal.species) {
+    case 'cat':
+      const description = createHtmlNode(
+        'p',
+        'animal__description',
+        animal.description
+      )
+      const origin = createHtmlNode(
+        'p',
+        'animal__origin',
+        `Origin: ${animal.origin}`
+      )
+      secondaryElements.push(description, origin)
+      break
+
+    case 'dog':
+      const height = createHtmlNode(
+        'p',
+        'animal__height',
+        `Height: ${animal.height} cm`
+      )
+      const breedGroup = createHtmlNode(
+        'p',
+        'animal__breed-group',
+        `Breed group: ${animal.breedGroup}`
+      )
+      const bredFor = createHtmlNode(
+        'p',
+        'animal__bred-for',
+        `Bred for: ${animal.bredFor}`
+      )
+      secondaryElements.push(height, breedGroup, bredFor)
+      break
+
+    default:
+  }
+  document.querySelector('.animal__info-secondary').append(...secondaryElements)
+}
+
 const renderAnimal = animal => {
   modalEl.innerHTML = ''
 
-  const card = createHtmlNode('div', 'animal__card')
-  const info = createHtmlNode('div', 'animal__info--primary')
   const img = createHtmlNode('img', 'animal__img')
+  const infoPrimary = createHtmlNode('div', 'animal__info-primary')
+  const infoSecondary = createHtmlNode('div', 'animal__info-secondary')
+
   img.src = animal.previewImage
-  info.appendChild(img)
-  card.appendChild(info)
-  modalEl.appendChild(card)
+  img.alt = `${animal.name} image`
+
+  modalEl.append(img, infoPrimary, infoSecondary)
+  renderPrimaryInfo(animal)
+  renderSecondaryInfo(animal)
 }
 
 // Event handlers
