@@ -119,6 +119,10 @@ const renderSecondaryInfo = animal => {
 
 const renderAnimal = animal => {
   modalEl.innerHTML = ''
+  const closeBtn = createHtmlNode('button', 'btn modal__btn-close', '\u2715')
+  closeBtn.addEventListener('click', onCloseBtnClick)
+
+  modalEl.appendChild(closeBtn)
 
   const img = createHtmlNode('img', 'animal__img')
   const infoPrimary = createHtmlNode('div', 'animal__info-primary')
@@ -133,6 +137,7 @@ const renderAnimal = animal => {
 }
 
 // Event handlers
+
 const handleTypeChange = async type => {
   if (type === getAnimalType()) return
 
@@ -149,7 +154,11 @@ const handleAnimalClick = async (id, type) => {
 
   overlayEl.classList.remove('hidden')
   modalEl.classList.remove('hidden')
-  console.log(selectedAnimal)
+}
+
+const onCloseBtnClick = () => {
+  overlayEl.classList.add('hidden')
+  modalEl.classList.add('hidden')
 }
 
 class App {
