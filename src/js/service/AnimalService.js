@@ -5,11 +5,9 @@ import Dog from '../classes/Dog'
 import AnimalLocalStorage from '../utility/AnimalLocalStorage'
 
 export default class AnimalService {
-  constructor() {
-    this.headers = {
-      'Content-Type': 'application/json',
-      'x-api-key': this.getApiKey(),
-    }
+  headers = {
+    'Content-Type': 'application/json',
+    'x-api-key': this.getApiKey(),
   }
 
   async getData(url) {
@@ -54,10 +52,8 @@ export default class AnimalService {
     if (!referenceImageId) return
 
     try {
-      const imageJson = await this.getData(
-        `${apiUrl}/images/${referenceImageId}`
-      )
-      return imageJson?.url
+      const { url } = await this.getData(`${apiUrl}/images/${referenceImageId}`)
+      return url
     } catch (error) {
       console.log(error)
     }
