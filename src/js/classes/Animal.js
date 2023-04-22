@@ -1,8 +1,6 @@
-import { getData } from '../service/service'
-
 export default class Animal {
   species = null
-  previewImage = null
+  image = null
 
   constructor(data) {
     this.id = data.id
@@ -13,11 +11,7 @@ export default class Animal {
     this.temperament = data.temperament
   }
 
-  async loadPreviewImage() {
-    const apiUrl =
-      this.species === 'cat' ? process.env.API_URL_CAT : process.env.API_URL_DOG
-
-    const data = await getData(`${apiUrl}/images/${this.referenceImageId}`)
-    this.previewImage = data?.url
+  async loadPreviewImage(service) {
+    this.image = await service.getAnimalPreviewImage(this.referenceImageId)
   }
 }
