@@ -22,6 +22,9 @@ export default class AnimalDomUtility {
     this.catBtn.addEventListener('click', () => this.handleTypeChange('cat'))
     this.dogBtn.addEventListener('click', () => this.handleTypeChange('dog'))
     this.overlayEl.addEventListener('click', this.handleCloseModal)
+    window.addEventListener('keydown', e => {
+      if (e.key === 'Escape') this.handleCloseModal()
+    })
   }
 
   createHtmlNode(tag, className, textContent = '') {
