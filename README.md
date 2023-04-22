@@ -19,7 +19,7 @@ You can see a live demo of this project [here](https://keidachird.github.io/tm-e
 ## Project details
 
 - The whole application uses OOP approach.
-- the program has three entities: `Animal`, `Cat` and `Dog`. Both `Cat` and `Dog` extends `Animal`.
+- The program has three entities: `Animal`, `Cat` and `Dog`. Both `Cat` and `Dog` extends `Animal`.
 - Every type of API request is implemented in _asynchronous_ method in the `AnimalService` class.
 - The `AnimalDomUtility` class provides methods for DOM manipulation throughout the application usage.
 - The state of the animal type is saved through page reloads.
