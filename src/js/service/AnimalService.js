@@ -66,6 +66,7 @@ export default class AnimalService {
   }
 
   getApiKey() {
+    if (!process.env.API_KEY_CAT || !process.env.API_KEY_DOG) return ''
     return AnimalLocalStorage.getAnimalType() === 'cat'
       ? process.env.API_KEY_CAT
       : process.env.API_KEY_DOG

@@ -30,6 +30,14 @@ You can see a live demo of this project [here](https://keidachird.github.io/tm-e
 - Clone this repository with `git clone https://github.com/keidachird/tm-entities-interactions.git`.
 - Open the cloned folder with `cd tm-entities-interactions`.
 - Run `npm i` to install all dependencies.
+- In the project root folder create `.env` file with the following content:
+
+  ```
+  API_URL_CAT = https://api.thecatapi.com/v1
+  API_URL_DOG = https://api.thedogapi.com/v1
+
+  ```
+
 - Run `npm run dev` to launch a server. It will open a browser, and you can use the application.
 
 ## Usage
@@ -42,24 +50,28 @@ Here are some examples of the application UI and its usage.
 
 - **Cat breeds page**:
 
-  ![Cat breeds page](https://i.ibb.co/ySvBbTg/tm-entities-interactions-screenshot-cats.png)
+![Cat breeds page](https://i.ibb.co/ySvBbTg/tm-entities-interactions-screenshot-cats.png)
 
 - **Dog breeds page**:
 
-  ![Dog breeds page](https://i.ibb.co/Gds9Y7j/tm-entities-interactions-screenshot-dogs.png)
+![Dog breeds page](https://i.ibb.co/Gds9Y7j/tm-entities-interactions-screenshot-dogs.png)
 
 - **Cat details**:
 
-  ![Cat details](https://i.ibb.co/Ry8wCxq/tm-entities-interactions-screenshot-cat-details.png)
+![Cat details](https://i.ibb.co/Ry8wCxq/tm-entities-interactions-screenshot-cat-details.png)
 
 - **Dog details**:
 
-  ![Dog details](https://i.ibb.co/JnNMhH0/tm-entities-interactions-screenshot-dog-details.png)
+![Dog details](https://i.ibb.co/JnNMhH0/tm-entities-interactions-screenshot-dog-details.png)
 
 - **On mobile device portrait mode**:
 
-  ![On mobile device portrait mode](https://i.ibb.co/hY8v01P/tm-entities-interactions-screenshot-mobile-portrait.png)
+![On mobile device portrait mode](https://i.ibb.co/hY8v01P/tm-entities-interactions-screenshot-mobile-portrait.png)
 
 - **On mobile device landscape mode**:
 
-  ![On mobile device landscape mode](https://i.ibb.co/dGp7Mnj/tm-entities-interactions-screenshot-mobile-landscape.png)
+![On mobile device landscape mode](https://i.ibb.co/dGp7Mnj/tm-entities-interactions-screenshot-mobile-landscape.png)
+
+```
+
+```
